@@ -1,0 +1,24 @@
+{
+  "env": {
+    "browser": true,
+    "node": true
+  },
+
+  "ecmaFeatures": {
+    "jsx": true,
+    "arrowFunctions": true,
+    "objectLiteralShorthandProperties": true    
+  },
+
+  "rules": {
+    "strict": [0],
+    "quotes":[2, "single"],
+    "no-underscore-dangle": 0,
+    "react/jsx-uses-react": 2,
+    "react/jsx-uses-vars": 2,
+    "react/react-in-jsx-scope": 2,
+  },
+  "plugins": [
+    "react"
+  ]
+}

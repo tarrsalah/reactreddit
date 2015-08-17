@@ -1,0 +1,27 @@
+.navbar {
+    font-size: 16px;
+    background-color: #f5f5f5;
+    border-bottom: 1px solid #e5e5e5;
+    font-family: Courier;
+    padding-bottom: 0.3em;
+    padding-top: 0.3em;
+}
+
+.navbar .header {
+    font-size: 120%;
+    font-weight: 600;
+    text-transform: none;
+}
+
+.active {
+    color: black;
+    font-weight: bolder;
+}
+
+#heading {
+    color: black;
+}
+
+.subreddit-p {
+    margin: 15px;
+}
