@@ -12,7 +12,7 @@ function createStrore(spec) {
     },
 
     addChangeListener: function(callback ){
-      emitter.emit(CHANGE_EVENT, callback);
+      emitter.on(CHANGE_EVENT, callback);
     },
 
     removeChangeListener: function(callback) {
