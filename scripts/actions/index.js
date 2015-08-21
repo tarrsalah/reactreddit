@@ -2,7 +2,7 @@ var actionTypes = require('../constants');
 var fetchSubreddit = require('../utils/APIUtils.js');
 var dispatchAsync = require('../dispatcher').dispatchAsync;
 
-function fetch(id) {
+function getTitles(id) {
   dispatchAsync(fetchSubreddit(id), {
     request: actionTypes.SUBREDDITS_REQUEST,
     success: actionTypes.SUBREDDITS_SUCCESS,
@@ -10,4 +10,4 @@ function fetch(id) {
   });
 }
 
-module.exports = fetch;
+module.exports = getTitles;

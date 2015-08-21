@@ -1,7 +1,6 @@
 var React = require('react');
-var fetch = require('../actions');
+var getTitles = require('../actions');
 var SubredditStore = require('../stores/SubredditStrore');
-
 
 function getState(props) {
   return {
@@ -10,7 +9,7 @@ function getState(props) {
 }
 
 function requestData(props) {
-  fetch(props.params.id);
+  getTitles(props.params.id);
 }
 
 var Subreddit = React.createClass({
@@ -22,6 +21,7 @@ var Subreddit = React.createClass({
   },
 
   componentDidMount: function() {
+    requestData(this.props);
     SubredditStore.addChangeListener(this.handleChange);
   },
 
@@ -34,7 +34,6 @@ var Subreddit = React.createClass({
   },
 
   handleChange: function() {
-    console.log('handleChange');
     this.setState(getState(this.props));
   },
 

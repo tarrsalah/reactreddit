@@ -42,5 +42,4 @@ flux.register(function(action){
   }
 });
 
-
 module.exports = SubredditStore;
