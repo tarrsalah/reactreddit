@@ -5,7 +5,7 @@ var actionTypes = require('../constants');
 
 
 var _store = {
-  subreddits: ['awww', 'pugs', 'corgi'],
+  subreddits: ['javascript', 'clojure', 'rust', 'reactjs', 'golang'],
   subredditsTitles: {},
   loading: false
 };

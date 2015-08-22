@@ -7,10 +7,11 @@ var App = require('./components/App.react.js');
 var Subreddit = require('./components/Subreddit.react.js');
 
 var Root = React.createClass({
+
   render: function() {
     return (
         <Router history={history}>
-            <Redirect from="/" to="/r/awww"/>
+            <Redirect from="/" to="/r/reactjs"/>
             <Route path="/" component={App}>
                 <Route path="r/:id" component={Subreddit}/>
             </Route>
