@@ -11,7 +11,7 @@ var Root = React.createClass({
   render: function() {
     return (
         <Router history={history}>
-            <Redirect from="/" to="/r/reactjs"/>
+            <Redirect from="/" to="/r/javascript"/>
             <Route path="/" component={App}>
                 <Route path="r/:id" component={Subreddit}/>
             </Route>

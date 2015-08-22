@@ -8,7 +8,7 @@ var App = React.createClass({
     return (
         <div>
             <div className="navbar pure-menu pure-menu-horizontal">
-                <Link id="heading" to="/"
+                <Link id="heading" to="/r/javascript"
                     className="header pure-menu-heading pure-menu-link">
                     reactreddit
                 </Link>

@@ -1,6 +1,6 @@
 require('whatwg-fetch');
 
-var URL = 'http://www.reddit.com/r/';
+var URL = 'https://www.reddit.com/r/';
 
 function fetchSubreddit(id) {
   return window.fetch(URL + id + '.json')
