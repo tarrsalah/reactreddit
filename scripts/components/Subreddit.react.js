@@ -4,7 +4,8 @@ var SubredditStore = require('../stores/SubredditStrore');
 
 function getState(props) {
   return {
-    subreddits: SubredditStore.getSubreddit(props.params.id)
+    subreddits: SubredditStore.getSubreddit(props.params.id),
+    loading: SubredditStore.isLoading()
   };
 }
 
@@ -16,7 +17,8 @@ var Subreddit = React.createClass({
 
   getInitialState: function() {
     return {
-      subreddits: []
+      subreddits: [],
+      loading: false
     };
   },
 
@@ -41,7 +43,7 @@ var Subreddit = React.createClass({
     return (
         <div>
             <ul>
-                {this.state.subreddits
+                {this.state.loading ? 'loading...' : this.state.subreddits
                  .map((item, index) => {
                    return <li key={index}>{item.data.title}</li>;
                  })
