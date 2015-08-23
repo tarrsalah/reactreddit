@@ -1,6 +1,0 @@
-/node_modules/
-.tern-port
-/dist/*
-!/dist/bundle.js
-!/dist/.js
-!/dist/index.html
