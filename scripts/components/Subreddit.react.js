@@ -32,7 +32,9 @@ var Subreddit = React.createClass({
   },
 
   componentWillReceiveProps: function(nextProps) {
-    requestData(nextProps);
+    if (nextProps.params.id !== this.props.params.id) {
+      requestData(nextProps);
+    }
   },
 
   handleChange: function() {
