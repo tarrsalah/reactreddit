@@ -45,7 +45,11 @@ var Subreddit = React.createClass({
             <ul>
                 {this.state.loading ? 'loading...' : this.state.subreddits
                  .map((item, index) => {
-                   return <li key={index}>{item.data.title}</li>;
+                   return (
+                       <li key={index}>
+                           <a href={item.data.url}>{item.data.title}</a>
+                       </li>
+                   );
                  })
                 }
             </ul>
