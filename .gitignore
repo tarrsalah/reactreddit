@@ -1,4 +1,6 @@
 /node_modules/
 .tern-port
-/dist/*.js
-/dist
+/dist/*
+!/dist/bundle.js
+!/dist/.js
+!/dist/index.html

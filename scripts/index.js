@@ -6,6 +6,9 @@ var history = require('react-router/lib/HashHistory').history;
 var App = require('./components/App.react.js');
 var Subreddit = require('./components/Subreddit.react.js');
 
+require('../styles/main.css');
+require('../node_modules/purecss/build/pure-min.css');
+
 var Root = React.createClass({
 
   render: function() {

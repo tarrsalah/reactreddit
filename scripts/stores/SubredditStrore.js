@@ -7,7 +7,7 @@ var actionTypes = require('../constants');
 var _store = {
   subreddits: ['javascript', 'clojure', 'rust', 'reactjs', 'golang'],
   subredditsTitles: {},
-  loading: false
+  loading: true
 };
 
 var SubredditStore = createStore({
@@ -31,13 +31,13 @@ flux.register(function(action){
     SubredditStore.emitChange();
     break;
   case actionTypes.SUBREDDITS_SUCCESS:
-    console.log(action.payload.id);
     _store.loading = false;
     _store.subredditsTitles[action.payload.id] = action.payload.links;
     SubredditStore.emitChange();
     break;
   case actionTypes.SUBREDDITS_FAILURE:
     _store.loading = false;
+    console.log(action.payload);
     SubredditStore.emitChange();
   }
 });
