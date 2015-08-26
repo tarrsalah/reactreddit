@@ -2,9 +2,16 @@ var React = require('react');
 var Link = require('react-router').Link;
 var SubredditStore = require('../stores/SubredditStrore');
 
-var App = React.createClass({
+class App extends React.Component {
 
-  render: function() {
+  constructor(props) {
+    super(props);
+    this.state = {
+      titles: SubredditStore.getTitles()
+    };
+  }
+
+  render() {
     return (
         <div>
             <div className="navbar pure-menu pure-menu-horizontal">
@@ -14,7 +21,7 @@ var App = React.createClass({
                 </Link>
 
                 <ul className="pure-menu-list">
-                    {SubredditStore.getAllSubreddits()
+                    {this.state.titles
                      .map((sub, index) => {
                        return (
                            <li key={index} className="pure-menu-item">
@@ -33,6 +40,6 @@ var App = React.createClass({
          </div>
     );
   }
-});
+}
 
 module.exports = App;

@@ -1,9 +1,9 @@
 var flux = require('flux');
 
-var dispatcher = new flux.Dispatcher();
+var _dispatcher = new flux.Dispatcher();
 
 function dispatch(actionType, payload) {
-  dispatcher.dispatch({
+  _dispatcher.dispatch({
     actionType: actionType,
     payload: payload
   });
@@ -19,4 +19,4 @@ function dispatchAsync(promise, actionTypes) {
   });
 }
 
-module.exports = {dispatcher, dispatch, dispatchAsync};
+module.exports = {_dispatcher, dispatch, dispatchAsync};

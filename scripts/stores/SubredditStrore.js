@@ -1,45 +1,57 @@
 require('whatwg-fetch');
-var createStore = require('../utils/StoreUtils.js');
-var flux = require('../dispatcher').dispatcher;
 var actionTypes = require('../constants');
+var List = require('immutable').List;
+var dispatcher = require('../dispatcher')._dispatcher;
+var OrderedMap = require('immutable').OrderedMap;
+var ReduceStore = require('flux/utils').ReduceStore;
 
+class RedditStore extends ReduceStore {
 
-var _store = {
-  subreddits: ['javascript', 'clojure', 'rust', 'reactjs', 'golang'],
-  subredditsTitles: {},
-  loading: true
-};
-
-var SubredditStore = createStore({
-  getAllSubreddits: function() {
-    return _store.subreddits;
-  },
-
-  getSubreddit: function(id) {
-    return _store.subredditsTitles[id];
-  },
-
-  isLoading: function() {
-    return _store.loading;
+  getInitialState() {
+    return {
+      titles: List.of('javascript', 'reactjs', 'clojure', 'golang'),
+      links: OrderedMap.of({}),
+      loading: false
+    };
   }
-});
 
-flux.register(function(action){
-  switch(action.actionType) {
-  case actionTypes.SUBREDDITS_REQUEST:
-    _store.loading = true;
-    SubredditStore.emitChange();
-    break;
-  case actionTypes.SUBREDDITS_SUCCESS:
-    _store.loading = false;
-    _store.subredditsTitles[action.payload.id] = action.payload.links;
-    SubredditStore.emitChange();
-    break;
-  case actionTypes.SUBREDDITS_FAILURE:
-    _store.loading = false;
-    console.log(action.payload);
-    SubredditStore.emitChange();
+  reduce(state, action) {
+    switch(action.actionType) {
+    case actionTypes.SUBREDDITS_REQUEST:
+      return {
+        titles: state.titles,
+        links: state.links,
+        loading: true
+      };
+    case actionTypes.SUBREDDITS_SUCCESS:
+      return {
+        title: state.titles,
+        links: state.links.set(action.payload.id, action.payload.links),
+        loading: false
+      };
+    case actionTypes.SUBREDDITS_FAILURE:
+      console.log(action.payload.error);
+      return {
+        titles: state.titles,
+        links: state.links,
+        loading: true
+      };
+    }
   }
-});
 
-module.exports = SubredditStore;
+  getTitles() {
+    return this.getState().titles;
+  }
+
+  getLinks(id) {
+    return this.getState().links.get(id);
+  }
+
+  isLoading() {
+    return this.getState().loading;
+  }
+}
+
+
+var instance = new RedditStore(dispatcher);
+module.exports = instance;

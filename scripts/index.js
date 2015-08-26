@@ -9,9 +9,9 @@ var Subreddit = require('./components/Subreddit.react.js');
 require('../styles/main.css');
 require('../node_modules/purecss/build/pure-min.css');
 
-var Root = React.createClass({
+class Root extends React.Component {
 
-  render: function() {
+  render() {
     return (
         <Router history={history}>
             <Redirect from="/" to="/r/javascript"/>
@@ -21,6 +21,6 @@ var Root = React.createClass({
         </Router>
     );
   }
-});
+}
 
 React.render(<Root/>, document.getElementById('root'));

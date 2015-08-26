@@ -2,46 +2,46 @@ var React = require('react');
 var getTitles = require('../actions');
 var SubredditStore = require('../stores/SubredditStrore');
 
-function getState(props) {
-  return {
-    subreddits: SubredditStore.getSubreddit(props.params.id),
-    loading: SubredditStore.isLoading()
-  };
-}
-
 function requestData(props) {
   getTitles(props.params.id);
 }
 
-var Subreddit = React.createClass({
+class Subreddit extends React.Component {
 
-  getInitialState: function() {
-    return {
+  constructor(props) {
+    super(props);
+    this.state = {
       subreddits: [],
       loading: false
     };
-  },
 
-  componentDidMount: function() {
+    this.removeListener = null;
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  componentDidMount() {
     requestData(this.props);
-    SubredditStore.addChangeListener(this.handleChange);
-  },
+    this.removeListener = SubredditStore.addListener(this.handleChange);
+  }
 
-  componentWillUnmount: function() {
-    SubredditStore.removeChangeListener(this.handleChange);
-  },
+  componentWillUnmount() {
+   this.removeListener();
+  }
 
-  componentWillReceiveProps: function(nextProps) {
+  componentWillReceiveProps(nextProps) {
     if (nextProps.params.id !== this.props.params.id) {
       requestData(nextProps);
     }
-  },
+  }
 
-  handleChange: function() {
-    this.setState(getState(this.props));
-  },
+  handleChange() {
+    this.setState({
+      subreddits: SubredditStore.getLinks(this.props.params.id),
+      loading: SubredditStore.isLoading()
+    });
+  }
 
-  render: function() {
+  render() {
     return (
         <div>
             <ul>
@@ -58,7 +58,6 @@ var Subreddit = React.createClass({
         </div>
     );
   }
-});
-
+}
 
 module.exports = Subreddit;
