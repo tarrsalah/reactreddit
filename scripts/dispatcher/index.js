@@ -1,5 +1,4 @@
 var flux = require('flux');
-
 var _dispatcher = new flux.Dispatcher();
 
 function dispatch(actionType, payload) {
