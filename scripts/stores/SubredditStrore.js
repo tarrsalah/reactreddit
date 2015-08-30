@@ -29,23 +29,26 @@ class RedditStore extends ReduceStore {
   reduce(state, action) {
     switch(action.actionType) {
     case actionTypes.SUBREDDITS_REQUEST:
-      return Object.assign(state, {
+      return {
+        titles: state.titles,
+        links: state.links,
         loading: true
-      });
+      };
     case actionTypes.SUBREDDITS_SUCCESS:
-      return Object.assign(state, {
+      return {
+        titles: state.titles,
         links: state.links.set(action.payload.id, action.payload.links),
         loading: false
-      });
+      };
     case actionTypes.SUBREDDITS_FAILURE:
-      console.log(action.payload.error);
-      return Object.assign(state, {
+      return {
+        titles: state.titles,
+        links: state.links,
         loading: false
-      });
+      };
     }
   }
 }
-
 
 var instance = new RedditStore(dispatcher);
 module.exports = instance;
